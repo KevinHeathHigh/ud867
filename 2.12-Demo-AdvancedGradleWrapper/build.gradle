@@ -62,3 +62,7 @@ possibility that a developer encounters problems with the build due to using
 the wrong version of Gradle.
 
  */
+
+wrapper {
+    version = '2.3'
+}

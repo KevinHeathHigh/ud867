@@ -15,14 +15,18 @@ http://tools.android.com/tech-docs/new-build-system/user-guide#TOC-Signing-Confi
 The solution to this exercise is essentially Demo 4.05
 
 */
-
-
 apply plugin: 'com.android.application'
-
 android {
+    signingConfigs {
+        config {
+            keyAlias 'udacity'
+            keyPassword 'password'
+            storeFile file('C:/Users/Kevin/Projects/Udacity/ud867/4.06-Exercise-ConfigureSigning/keystore.jks')
+            storePassword 'password'
+        }
+    }
     compileSdkVersion 24
-    buildToolsVersion "24.0.1"
-
+    buildToolsVersion '27.0.3'
     defaultConfig {
         applicationId "com.udacity.gradle.automaticsigning"
         minSdkVersion 15
@@ -34,11 +38,17 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.config
         }
     }
+    lintOptions {
+        checkReleaseBuilds false
+        // Or, if you prefer, you can continue to check for errors in release builds,
+        // but continue the build even when errors are found:
+        abortOnError false
+    }
 }
-
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile 'com.android.support:appcompat-v7:24.1.1'
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation 'com.android.support:appcompat-v7:24.1.1'
 }
