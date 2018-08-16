@@ -2,6 +2,8 @@ package net.hobbitsoft.jokeprovider;
 
 // Jokes provided by Cortana(tm)
 
+
+
 public class JokeProvider {
 
     public String getJoke(){
